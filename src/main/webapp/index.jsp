@@ -1,10 +1,9 @@
 <%--
 Created by IntelliJ IDEA.
-User: Elvis Pachacama
-Date: 9/5/2025
-Time: 18:55
-Descripción:
+User: Alexis Arcos🗿
+Date: 11/05/2025
 --%>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="java.util.Map" %>
 <%
@@ -13,114 +12,134 @@ Map<String, String> errores = (Map<String, String>) request.getAttribute("errore
 
 <html lang="en">
 <head>
-    <link href="<%=request.getContextPath()%>/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <title>Formulario usuario</title>
 </head>
-<body>
-<div class="container">
-    <h3>Formulario de Usuario</h3>
+<body class="bg-light"> <!-- Aplica fondo claro usando clase de Bootstrap -->
+<div class="container mt-5"> <!-- Contenedor principal con margen superior -->
+    <div class="row justify-content-center"> <!-- Fila centrada horizontalmente -->
+        <div class="col-md-8"> <!-- Columna de ancho medio (8/12) -->
+            <div class="card shadow-lg rounded"> <!-- Card con sombra y bordes redondeados -->
+                <div class="card-header bg-primary text-white text-center"> <!-- Encabezado de la tarjeta con fondo azul, texto blanco y centrado -->
+                    <h3>Formulario de Usuario</h3>
+                </div>
 
-    <% if (errores != null && errores.size() > 0) { %>
-    <ul>
-        <% for (String error : errores.values()) { %>
-        <li><%= error %></li>
-        <% } %>
-    </ul>
-    <% } %>
+                <div class="card-body"> <!-- Cuerpo principal del formulario -->
 
-    <form action="/app_formulario/registro" method="post">
-        <!-- Usuario -->
-        <div>
-            <label for="username">Usuario:</label>
-            <input type="text" name="username" id="username"/>
-        </div>
+                    <% if (errores != null && errores.size() > 0) { %> <!-- Verifica si hay errores en el mapa -->
+                    <div class="alert alert-danger"> <!-- Muestra alerta roja si hay errores -->
+                        <ul class="mb-0">
+                            <% for (String error : errores.values()) { %> <!-- Recorre cada mensaje de error -->
+                            <li><%= error %></li> <!-- Muestra cada error en una lista -->
+                            <% } %>
+                        </ul>
+                    </div>
+                    <% } %>
 
-        <!-- Password -->
-        <div>
-            <label for="password">Password:</label>
-            <input type="password" name="password" id="password"/>
-        </div>
+                    <form action="/app_formulario/registro" method="post"> <!-- Formulario que se envía por POST -->
 
-        <!-- Email -->
-        <div>
-            <label for="email">Email:</label>
-            <input type="email" name="email" id="email"/>
-        </div>
+                        <!-- Campo Usuario -->
+                        <div class="mb-3"> <!-- Margen inferior -->
+                            <label for="username" class="form-label">Usuario:</label>
+                            <input type="text" name="username" id="username" class="form-control"/> <!-- Input con estilo de Bootstrap -->
+                        </div>
 
-        <!-- País -->
-        <div>
-            <label for="pais">País:</label>
-            <select name="pais" id="pais">
-                <option value="">-----Seleccionar-----</option>
-                <option value="ES">España</option>
-                <option value="EC">Ecuador</option>
-                <option value="PE">Perú</option>
-                <option value="CO">Colombia</option>
-                <option value="BR">Brazil</option>
-                <option value="AR">Argentina</option>
-                <option value="VE">Venezuela</option>
-            </select>
-        </div>
+                        <!-- Campo Password -->
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Password:</label>
+                            <input type="password" name="password" id="password" class="form-control"/>
+                        </div>
 
-        <!-- Lenguajes -->
-        <div>
-            <label for="lenguajes">Lenguajes:</label>
-            <select name="lenguajes" id="lenguajes">
-                <option value="">-----Seleccionar-----</option>
-                <option value="Java">Java</option>
-                <option value="Python">Python</option>
-                <option value="C#">C#</option>
-                <option value="C++">C++</option>
-                <option value="Angular">Angular</option>
-            </select>
-        </div>
+                        <!-- Campo Email -->
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email:</label>
+                            <input type="email" name="email" id="email" class="form-control"/>
+                        </div>
 
-        <!-- Roles -->
-        <div>
-            <label>Roles:</label>
-            <div>
-                <input type="checkbox" name="roles" value="ROLE_ADMIN" id="admin"/>
-                <label for="admin">Administrador</label>
-            </div>
-            <div>
-                <input type="checkbox" name="roles" value="ROLE_USER" id="user"/>
-                <label for="user">Usuario</label>
-            </div>
-            <div>
-                <input type="checkbox" name="roles" value="ROLE_MODERADOR" id="moderador"/>
-                <label for="moderador">Moderador</label>
-            </div>
-        </div>
+                        <!-- País y Lenguajes en 2 columnas -->
+                        <div class="row"> <!-- Agrupa en fila -->
+                            <!-- País -->
+                            <div class="col-md-6 mb-3">
+                                <label for="pais" class="form-label">País:</label>
+                                <select name="pais" id="pais" class="form-select"> <!-- Dropdown estilizado -->
+                                    <option value="">--Seleccionar--</option>
+                                    <option value="ES">España</option>
+                                    <option value="EC">Ecuador</option>
+                                    <option value="PE">Perú</option>
+                                    <option value="CO">Colombia</option>
+                                    <option value="BR">Brazil</option>
+                                    <option value="AR">Argentina</option>
+                                    <option value="VE">Venezuela</option>
+                                </select>
+                            </div>
+                            <!-- Lenguajes -->
+                            <div class="col-md-6 mb-3">
+                                <label for="lenguajes" class="form-label">Lenguajes:</label>
+                                <select name="lenguajes" id="lenguajes" class="form-select">
+                                    <option value="">--Seleccionar--</option>
+                                    <option value="Java">Java</option>
+                                    <option value="Python">Python</option>
+                                    <option value="C#">C#</option>
+                                    <option value="C++">C++</option>
+                                    <option value="Angular">Angular</option>
+                                </select>
+                            </div>
+                        </div>
 
-        <!-- Idiomas -->
-        <div>
-            <label>Idiomas:</label>
-            <div>
-                <input type="radio" name="idioma" value="es" id="esp"/>
-                <label for="esp">Español</label>
-            </div>
-            <div>
-                <input type="radio" name="idioma" value="en" id="eng"/>
-                <label for="eng">Inglés</label>
-            </div>
-            <div>
-                <input type="radio" name="idioma" value="ru" id="rus"/>
-                <label for="rus">Ruso</label>
-            </div>
-        </div>
+                        <!-- Roles (checkbox en línea) -->
+                        <div class="mb-3">
+                            <label class="form-label">Roles:</label><br/>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" name="roles" value="ROLE_ADMIN" id="admin" class="form-check-input"/>
+                                <label for="admin" class="form-check-label">Administrador</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" name="roles" value="ROLE_USER" id="user" class="form-check-input"/>
+                                <label for="user" class="form-check-label">Usuario</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input type="checkbox" name="roles" value="ROLE_MODERADOR" id="moderador" class="form-check-input"/>
+                                <label for="moderador" class="form-check-label">Moderador</label>
+                            </div>
+                        </div>
 
-        <!-- Habilitar -->
-        <div>
-            <label for="habilitar">Habilitar:</label>
-            <input type="checkbox" name="habilitar" id="habilitar" checked/>
-        </div>
+                        <!-- Idiomas (radio en línea) -->
+                        <div class="mb-3">
+                            <label class="form-label">Idiomas:</label><br/>
+                            <div class="form-check form-check-inline">
+                                <input type="radio" name="idioma" value="es" id="esp" class="form-check-input"/>
+                                <label for="esp" class="form-check-label">Español</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input type="radio" name="idioma" value="en" id="eng" class="form-check-input"/>
+                                <label for="eng" class="form-check-label">Inglés</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input type="radio" name="idioma" value="ru" id="rus" class="form-check-input"/>
+                                <label for="rus" class="form-check-label">Ruso</label>
+                            </div>
+                        </div>
 
-        <!-- Submit y campo oculto -->
-        <div>
-            <input type="submit" value="Enviar"/>
-        </div>
-        <input type="hidden" name="secreto" value="123456"/>
-    </form>
-</div>
+                        <!-- Habilitar (checkbox) -->
+                        <div class="form-check mb-3">
+                            <input type="checkbox" name="habilitar" id="habilitar" class="form-check-input" checked/>
+                            <label for="habilitar" class="form-check-label">Habilitar</label>
+                        </div>
+
+                        <!-- Botón de Enviar -->
+                        <div class="d-grid"> <!-- Hace que el botón use todo el ancho -->
+                            <button type="submit" class="btn btn-success">Enviar</button>
+                        </div>
+
+                        <!-- Campo oculto (por seguridad o control) -->
+                        <input type="hidden" name="secreto" value="123456"/>
+                    </form>
+
+                </div> <!-- /card-body -->
+            </div> <!-- /card -->
+        </div> <!-- /col -->
+    </div> <!-- /row -->
+</div> <!-- /container -->
 </body>
+
 </html>
